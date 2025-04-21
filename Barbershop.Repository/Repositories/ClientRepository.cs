@@ -19,7 +19,7 @@ public class ClientRepository : IClientRepository
         await using var connection = new NpgsqlConnection(_connectionString);
         await connection.OpenAsync();
 
-        return await connection.QuerySingleAsync<Client>($"SELECT * FROM clients WHERE Id = @Id AND Name = @Nome;", new { id });
+        return await connection.QuerySingleAsync<Client>($"SELECT * FROM clients WHERE Id = @Id;", new { Id = id });
     }
 
     public async Task<List<Client>> GetAllClientsAsync()
